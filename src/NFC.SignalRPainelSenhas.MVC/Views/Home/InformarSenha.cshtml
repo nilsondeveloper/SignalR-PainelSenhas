@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            @Html.Label("lbSenhaAtual", "Senha Inicial")
+            @Html.TextBox("tbSenhaAtual", "0", new { @disabled = "disabled" })
+            <button type="submit" id="proximaSenha" onclick=" GerarProximaSenha(); "> Gerar Próxima Senha </button>
+        </div>
+    </div>
+</body>
+</html>
+
+
+@section scripts {
+
+    @Scripts.Render("~/bundles/SignalR")
+    <script src="~/signalr/hubs"></script>
+
+    <script>
+        
+        function GerarProximaSenha() {
+
+            var painel = $.connection.painelSenhasHub;
+
+            $.connection.hub.start().done(function () {
+                var senha = parseInt($("#tbSenhaAtual").val()) + 1;
+                painel.server.informarSenhaAtual(senha);
+                $("#tbSenhaAtual").val(senha);
+            });
+        };
+
+    </script>
+}

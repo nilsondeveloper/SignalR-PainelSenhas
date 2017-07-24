@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "";
+}
+<h2>Painel de Senhas</h2>
+<h3>Senha Atual: @Html.TextBox("tbSenhaAtual", "")</h3>
+
+
+@section scripts {
+
+    @Scripts.Render("~/bundles/SignalR")
+    <script src="~/signalr/hubs"></script>
+
+    <script>
+
+        $(function () {
+            var painel = $.connection.painelSenhasHub;
+            painel.client.dispararSenhaAtual = function(senha) {
+                $("#tbSenhaAtual").val(senha);
+            };
+
+            $.connection.hub.start();
+        });
+
+    </script>
+}
+
