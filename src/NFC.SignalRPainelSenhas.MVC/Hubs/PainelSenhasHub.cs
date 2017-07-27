@@ -4,9 +4,9 @@ namespace NFC.SignalRPainelSenhas.MVC.Hubs
 {
     public class PainelSenhasHub : Hub
     {
-        public void InformarSenhaAtual(string senha)
+        public void InformarSenhaAtual(string guinche, string senha)
         {
-            Clients.All.DispararSenhaAtual(senha);
+            Clients.All.DispararSenhaAtual(guinche,senha);
         }
     }
 }
