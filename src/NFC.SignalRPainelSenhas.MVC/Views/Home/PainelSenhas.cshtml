@@ -2,7 +2,7 @@
     ViewBag.Title = "";
 }
 <h2>Painel de Senhas</h2>
-<h3>Guinche: @Html.TextBox("tbGuinche", "")</h3>
+<h3>Guichê: @Html.TextBox("tbGuiche", "")</h3>
 <h3>Senha: @Html.TextBox("tbSenhaAtual", "")</h3>
 
 
@@ -15,8 +15,8 @@
 
         $(function () {
             var painel = $.connection.painelSenhasHub;
-            painel.client.dispararSenhaAtual = function(guinche,senha) {
-                $("#tbGuinche").val(guinche);
+            painel.client.dispararSenhaAtual = function (guiche, senha) {
+                $("#tbGuiche").val(guiche);
                 $("#tbSenhaAtual").val(senha);
 
             };
